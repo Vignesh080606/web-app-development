@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Podman: Build & Run",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "if (podman ps -q --filter ancestor=mywebapp) { podman stop (podman ps -q --filter ancestor=mywebapp); podman rm (podman ps -q --filter ancestor=mywebapp) }; podman build -t mywebapp .; podman run -d -p 8080:8080 mywebapp"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
